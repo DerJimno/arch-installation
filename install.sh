@@ -75,7 +75,7 @@ useradd -m jimno
 echo "set up user password:"
 passwd jimno
 
-EDITOR='nvim +":g/^#\s*%wheel\s\+ALL/s/^#\s*//" +wq' visudo
+sed -i '0,/^# *%wheel/s/^# *//' /etc/sudoers
  
 sudo groupadd uinput
 usermod -aG wheel,audio,video,optical,storage,input,uinput jimno
