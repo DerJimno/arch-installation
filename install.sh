@@ -95,3 +95,5 @@ arch-chroot /mnt /chroot-part.sh
 
 rm /mnt/chroot-part.sh
 umount -l /mnt
+
+reboot
