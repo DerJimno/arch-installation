@@ -69,8 +69,10 @@ tee /etc/hosts <<HOST
 127.0.1.1   pc-box.localdomain pc-box
 HOST
 
+echo "set up root password:"
 passwd
 useradd -m jimno 
+echo "set up user password:"
 passwd jimno
 
 EDITOR='nvim +":g/^#\s*%wheel\s\+ALL/s/^#\s*//" +wq' visudo
