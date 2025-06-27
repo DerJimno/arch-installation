@@ -38,7 +38,7 @@ mkfs.ext4 /dev/sda2
 
 mount /dev/sda2 /mnt 
 
-pacstrap /mnt base linux llinux-firmware neovim sudo grub efibootmgr dosfstools os-prober mtools networkmanager git 
+pacstrap /mnt base linux linux-firmware neovim sudo grub efibootmgr dosfstools os-prober mtools networkmanager git 
 
 genfstab -U /mnt >> /mnt/etc/fstab
 
