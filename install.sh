@@ -1,5 +1,9 @@
 #!/bin/bash
 
+
+set -e
+
+
 loadkeys us
 ping google.com
 timedatectl set-ntp true
@@ -38,11 +42,14 @@ mkfs.ext4 /dev/sda2
 
 mount /dev/sda2 /mnt 
 
-pacstrap /mnt base linux linux-firmware neovim sudo grub efibootmgr dosfstools os-prober mtools networkmanager git 
 
-genfstab -U /mnt >> /mnt/etc/fstab
+# Create chroot script
+cat > /mnt/chroot-setup.sh <<'EOF2'
+#!/bin/bash
+set -e
 
-arch-chroot /mnt
+
+
 ln -sf /usr/share/zoneinfo/Africa/Algiers /etc/localtime
 
 hwclock --systohc
@@ -70,5 +77,15 @@ grub-mkconfig -o /boot/grub/grub.cfg
 systemctl enable NetworkManager
 
 
-exit 
+
+chmod +x /mnt/chroot-setup.sh
+
+pacstrap /mnt base linux linux-firmware neovim sudo grub efibootmgr dosfstools os-prober mtools networkmanager git
+
+genfstab -U /mnt >> /mnt/etc/fstab
+
+arch-chroot /mnt /chroot-setup.sh
+
+rm /mnt/chroot-setup.sh
 umount -l /mnt
+echo "Installation complete. You can now reboot."
