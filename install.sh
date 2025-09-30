@@ -70,13 +70,11 @@ HOST
 
 echo "set up root password:"
 passwd
-useradd -m menaouer 
+useradd -m -s /bin/bash -G wheel,audio,video,optical,storage,input,uinput menaouer
 echo "set up user password:"
 passwd menaouer
 
 sed -i '0,/^# *%wheel/s/^# *//' /etc/sudoers
-
-useradd -m -s /bin/bash -G wheel,audio,video,optical,storage,input,uinput menaouer
 
 mkdir /boot/EFI
 mount /dev/sda1 /boot/EFI
