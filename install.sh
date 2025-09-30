@@ -5,7 +5,6 @@ set -e
 
 
 loadkeys us
-ping google.com
 timedatectl set-ntp true
 timedatectl status
 
@@ -61,28 +60,27 @@ hwclock --systohc
 nvim -c 'g/^#\s*en_US.UTF/s/^#\s*//' -c 'wq' /etc/locale.gen
 locale-gen
 
-echo "pc-box" | tee /etc/hostname
+echo "computer" | tee /etc/hostname
 
 tee /etc/hosts <<HOST
 127.0.0.1   localhost
 ::1         localhost
-127.0.1.1   pc-box.localdomain pc-box
+127.0.1.1   computer.localdomain computer
 HOST
 
 echo "set up root password:"
 passwd
-useradd -m jimno 
+useradd -m menaouer 
 echo "set up user password:"
-passwd jimno
+passwd menaouer
 
 sed -i '0,/^# *%wheel/s/^# *//' /etc/sudoers
- 
-sudo groupadd uinput
-usermod -aG wheel,audio,video,optical,storage,input,uinput jimno
+
+useradd -m -s /bin/bash -G wheel,audio,video,optical,storage,input,uinput menaouer
 
 mkdir /boot/EFI
 mount /dev/sda1 /boot/EFI
-grub-install --target=x86_64-efi  --bootloader-id=grub_uefi --recheck
+grub-install --target=x86_64-efi --bootloader-id=grub_uefi --recheck
 grub-mkconfig -o /boot/grub/grub.cfg
 systemctl enable NetworkManager
 
