@@ -71,7 +71,7 @@ HOST
 echo "set up root password:"
 passwd
 groupadd -r uinput
-useradd -m -s /bin/bash -G wheel,audio,video,optical,storage,input,uinput menaouer
+useradd -m -U -s /bin/bash -G wheel,audio,video,optical,storage,input,uinput menaouer
 echo "set up user password:"
 passwd menaouer
 
