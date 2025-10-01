@@ -40,7 +40,7 @@ mkfs.fat -F32 /dev/sda1
 mkfs.ext4 /dev/sda2
 mount /dev/sda2 /mnt 
 
-pacstrap /mnt base linux linux-firmware neovim sudo grub efibootmgr dosfstools os-prober mtools networkmanager git 
+pacstrap /mnt base linux linux-firmware 
 genfstab -U /mnt >> /mnt/etc/fstab
 
 
@@ -55,6 +55,8 @@ set -e
 ln -sf /usr/share/zoneinfo/Africa/Algiers /etc/localtime
 
 hwclock --systohc
+
+pacman -S neovim sudo grub efibootmgr dosfstools os-prober mtools networkmanager git
 
 # Locale
 sed -i 's/^#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
@@ -92,5 +94,3 @@ arch-chroot /mnt /chroot-part.sh
 
 rm /mnt/chroot-part.sh
 umount -l /mnt
-
-reboot
