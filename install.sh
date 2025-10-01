@@ -85,7 +85,8 @@ grub-install --target=x86_64-efi --bootloader-id=grub_uefi --recheck
 grub-mkconfig -o /boot/grub/grub.cfg
 systemctl enable NetworkManager
 
-
+# Ensure user owns everything in their home
+chown -R menaouer:menaouer /home/menaouer
 
 CHROOT
 
