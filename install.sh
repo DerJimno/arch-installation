@@ -56,8 +56,6 @@ ln -sf /usr/share/zoneinfo/Africa/Algiers /etc/localtime
 
 hwclock --systohc
 
-pacman -S neovim sudo grub efibootmgr dosfstools os-prober mtools networkmanager git
-
 # Locale
 sed -i 's/^#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
 locale-gen
@@ -77,6 +75,8 @@ useradd -m -U -s /bin/bash -G wheel,audio,video,optical,storage,input,uinput men
 echo "set up user password:"
 passwd menaouer
 
+pacman -S neovim sudo grub efibootmgr dosfstools os-prober mtools networkmanager git
+
 sed -i '0,/^# *%wheel/s/^# *//' /etc/sudoers
 
 mkdir /boot/EFI
@@ -95,3 +95,4 @@ arch-chroot /mnt /chroot-part.sh
 
 rm /mnt/chroot-part.sh
 umount -l /mnt
+reboot
