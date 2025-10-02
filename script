@@ -3,6 +3,10 @@
 
 set -e
 
+read -s -p "Enter desired password for root and user: " PASSWORD
+echo
+
+export PASSWORD  # Pass to chroot
 
 loadkeys us
 timedatectl set-ntp true
@@ -68,12 +72,12 @@ tee /etc/hosts <<HOST
 127.0.1.1   computer.localdomain computer
 HOST
 
-echo "set up root password:"
-passwd
+# Set root password from environment variable
+echo "root:$PASSWORD" | chpasswd
+
 groupadd -r uinput
 useradd -m -U -s /bin/bash -G wheel,audio,video,optical,storage,input,uinput menaouer
-echo "set up user password:"
-passwd menaouer
+echo "menaouer:$PASSWORD" | chpasswd
 
 pacman -S --noconfirm neovim sudo grub efibootmgr dosfstools os-prober mtools networkmanager git
 
