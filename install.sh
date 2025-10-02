@@ -77,7 +77,7 @@ passwd menaouer
 
 pacman -S neovim sudo grub efibootmgr dosfstools os-prober mtools networkmanager git
 
-sed -i '0,/^# *%wheel/s/^# *//' /etc/sudoers
+sed -i 's/^# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/' /etc/sudoers
 
 mkdir /boot/EFI
 mount /dev/sda1 /boot/EFI
