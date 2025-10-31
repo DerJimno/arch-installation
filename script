@@ -1,12 +1,14 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 
 set -e
 
+read -p "Enter desired hostname: " HOSTNAME
+read -p "Enter desired username: " USERNAME
 read -s -p "Enter desired password for root and user: " PASSWORD
 echo
 
-export PASSWORD  # Pass to chroot
+export HOSTNAME USERNAME PASSWORD # Pass to chroot
 
 loadkeys us
 timedatectl set-ntp true
@@ -14,7 +16,6 @@ timedatectl status
 
 DEVICE="/dev/sda"
 
-# Check before proceeding
 echo "About to partition $DEVICE. THIS WILL ERASE DATA. Continue? (y/N)"
 read -r confirm
 if [[ "$confirm" != "y" ]]; then
@@ -22,7 +23,6 @@ if [[ "$confirm" != "y" ]]; then
   exit 1
 fi
 
-# Use fdisk in a here-document
 fdisk "$DEVICE" <<EOF
 g
 n
@@ -36,50 +36,41 @@ n
 t
 1
 1
-w 
+w
 EOF
-
 
 mkfs.fat -F32 /dev/sda1
 mkfs.ext4 /dev/sda2
-mount /dev/sda2 /mnt 
+mount /dev/sda2 /mnt
 
-pacstrap /mnt base linux linux-firmware 
+pacstrap /mnt base linux linux-firmware
 genfstab -U /mnt >> /mnt/etc/fstab
 
-
 cat > /mnt/chroot-part.sh <<'CHROOT'
-
 #!/bin/bash
-
-
 set -e
 
-
 ln -sf /usr/share/zoneinfo/Africa/Algiers /etc/localtime
-
 hwclock --systohc
 
-# Locale
 sed -i 's/^#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
 locale-gen
 
-echo "computer" | tee /etc/hostname
+echo "$HOSTNAME" | tee /etc/hostname
 
 tee /etc/hosts <<HOST
 127.0.0.1   localhost
 ::1         localhost
-127.0.1.1   computer.localdomain computer
+127.0.1.1   $HOSTNAME.localdomain $HOSTNAME
 HOST
 
-# Set root password from environment variable
 echo "root:$PASSWORD" | chpasswd
 
-groupadd -r uinput
-useradd -m -U -s /bin/bash -G wheel,audio,video,optical,storage,input,uinput menaouer
-echo "menaouer:$PASSWORD" | chpasswd
+useradd -m -U -s /bin/bash -G wheel "$USERNAME"
 
-pacman -S --noconfirm sudo grub efibootmgr dosfstools mtools networkmanager
+echo "$USERNAME:$PASSWORD" | chpasswd
+
+pacman -Syu --noconfirm sudo grub efibootmgr dosfstools mtools networkmanager
 
 sed -i 's/^# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/' /etc/sudoers
 
@@ -89,13 +80,11 @@ grub-install --target=x86_64-efi --bootloader-id=grub_uefi --recheck
 grub-mkconfig -o /boot/grub/grub.cfg
 systemctl enable NetworkManager
 
-# Ensure user owns everything in their home
-chown -R menaouer:menaouer /home/menaouer
-
+chown -R "$USERNAME:$USERNAME" "/home/$USERNAME"
 CHROOT
 
 chmod +x /mnt/chroot-part.sh
-arch-chroot /mnt /chroot-part.sh
+arch-chroot /mnt env PASSWORD="$PASSWORD" HOSTNAME="$HOSTNAME" USERNAME="$USERNAME" /chroot-part.sh
 
 rm /mnt/chroot-part.sh
 umount -l /mnt
