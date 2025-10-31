@@ -79,7 +79,7 @@ groupadd -r uinput
 useradd -m -U -s /bin/bash -G wheel,audio,video,optical,storage,input,uinput menaouer
 echo "menaouer:$PASSWORD" | chpasswd
 
-pacman -S --noconfirm neovim sudo grub efibootmgr dosfstools os-prober mtools networkmanager git
+pacman -S --noconfirm sudo grub efibootmgr dosfstools mtools networkmanager
 
 sed -i 's/^# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/' /etc/sudoers
 
