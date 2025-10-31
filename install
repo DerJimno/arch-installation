@@ -14,7 +14,7 @@ read -rp "Enter your choice [1-4]: " choice
 case "$choice" in
     1)
         echo "Installing Arch..."
-        sh <(curl -Lks raw.githubusercontent.com/DerJimno/arch-installation/main/arch)
+        sh <(curl -Lks raw.githubusercontent.com/DerJimno/arch-installation/main/script)
         ;;
     2)
         echo "Setting up Arch for Personal Use..."
