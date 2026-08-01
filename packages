@@ -12,13 +12,16 @@ ttf-liberation ttf-dejavu unzip discord xorg-xmessage libreoffice-fresh \
 luarocks shellcheck dunst playerctl mpv-mpris fzf
 
 # AUR install
-git clone https://aur.archlinux.org/aura-bin.git
-cd aura-bin
+cd /tmp
+git clone https://aur.archlinux.org/yay.git
+cd yay
 makepkg -si --noconfirm
-cd
+cd ~
+# Clean up the build directory
+rm -rf /tmp/yay
 
 # AUR packages
-aura -A --noconfirm brave-bin kanata-bin pfetch ttf-comic-mono-git \
+yay -S --noconfirm brave-bin kanata-bin pfetch ttf-comic-mono-git \
 pcloud-drive jmtpfs ttf-noto-emoji-monochrome einfach-icon-theme \
 einfach-grub-theme ttf-times-new-roman
 
