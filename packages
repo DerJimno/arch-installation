@@ -18,8 +18,8 @@ makepkg -si --noconfirm
 cd ..
 
 # AUR packages
-aura -A --noconfirm mutt-wizard-git brave-bin pfetch ttf-comic-mono-git \
-pcloud-drive jmtpfs ttf-noto-emoji-monochrome kanata-bin einfach-icon-theme \
+aura -A --noconfirm brave-bin kanata-bin pfetch ttf-comic-mono-git \
+pcloud-drive jmtpfs ttf-noto-emoji-monochrome einfach-icon-theme \
 einfach-grub-theme ttf-times-new-roman
 
 # Fnm install (Currently Commmented)
