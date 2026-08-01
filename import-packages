@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+git clone --bare git@github.com:DerJimno/dotfiles.git $HOME/.cfg
+function config {
+   /usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME $@
+}
+mkdir -p .config-backup
+config checkout
+if [ $? = 0 ]; then
+  echo "Checked out config.";
+  else
+    echo "Backing up pre-existing dot files.";
+    config checkout 2>&1 | grep -E "\s+\." | awk {'print $1'} | xargs -I{} mv {} .config-backup/{}
+fi;
+config checkout
+config config status.showUntrackedFiles no
+
+# Mark files to skip-worktree
+files=(
+  ".config/nitrogen/bg-saved.cfg"
+)
+
+for file in "${files[@]}"; do
+  config update-index --skip-worktree "$file"
+  echo "$file ✅ skipped."
+done
