@@ -14,13 +14,3 @@ if [ $? = 0 ]; then
 fi;
 config checkout
 config config status.showUntrackedFiles no
-
-# Mark files to skip-worktree
-files=(
-  ".config/nitrogen/bg-saved.cfg"
-)
-
-for file in "${files[@]}"; do
-  config update-index --skip-worktree "$file"
-  echo "$file ✅ skipped."
-done
