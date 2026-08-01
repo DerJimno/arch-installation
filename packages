@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+# Arch-repo packages
+sudo pacman -Syu --noconfirm xorg ly base-devel xmonad xmonad-contrib xmobar \
+pcmanfm pacman-contrib dmenu feh fish alacritty picom mpv os-prober \
+yt-dlp gvfs htop lsd bat xcursor-themes vifm scrot xclip libnotify neovim \
+notification-daemon udisks2 gparted ttf-inconsolata ttf-hack ttf-monofur \
+terminus-font ttf-ubuntu-font-family ttf-cascadia-code ttf-fira-code git \
+ttf-ubuntu-mono-nerd alsa-utils xsettingsd pipewire pipewire-alsa \
+pipewire-pulse pipewire-jack wireplumber bluez bluez-utils xf86-input-synaptics \
+ttf-liberation ttf-dejavu unzip discord xorg-xmessage libreoffice-fresh \
+luarocks shellcheck dunst playerctl mpv-mpris fzf
+
+# AUR install
+git clone https://aur.archlinux.org/aura-bin.git
+cd aura-bin
+makepkg -si --noconfirm
+cd ..
+
+# AUR packages
+aura -A --noconfirm mutt-wizard-git brave-bin pfetch ttf-comic-mono-git \
+pcloud-drive jmtpfs ttf-noto-emoji-monochrome kanata-bin einfach-icon-theme \
+einfach-grub-theme ttf-times-new-roman
+
+# Fnm install (Currently Commmented)
+# curl -fsSL https://fnm.vercel.app/install | bash -s -- --skip-shell
