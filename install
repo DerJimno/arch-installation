@@ -16,9 +16,9 @@ case "$choice" in
         ;;
     2)
         echo "Setting up Arch"
-        sh <(curl -Lks raw.githubusercontent.com/DerJimno/packages/main/personal)
-        sh <(curl -Lks raw.githubusercontent.com/DerJimno/dotfiles-import/main/personal)
-        sh <(curl -Lks raw.githubusercontent.com/DerJimno/configuration/main/configure)
+        sh <(curl -Lks raw.githubusercontent.com/DerJimno/arch-installation/main/packages)
+        sh <(curl -Lks raw.githubusercontent.com/DerJimno/arch-installation/main/import-packages)
+        sh <(curl -Lks raw.githubusercontent.com/DerJimno/arch-installation/main/services)
         ;;
     3)
         echo "Exiting."
