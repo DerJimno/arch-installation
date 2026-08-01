@@ -3,38 +3,24 @@
 set -e
 
 echo "Select an option:"
-echo "1) Arch Clean Install"
-echo "2) Setup Arch for Personal Use"
-echo "3) Setup Arch for Work"
-echo "4) Setup Arch as a Server"
-echo "5) Exit"
+echo "1) Arch Base Install"
+echo "2) Setup Arch"
+echo "3) Exit"
 
-read -rp "Enter your choice [1-4]: " choice
+read -rp "Enter your choice [1-3]: " choice
 
 case "$choice" in
     1)
         echo "Installing Arch..."
-        sh <(curl -Lks raw.githubusercontent.com/DerJimno/arch-installation/main/script)
+        sh <(curl -Lks raw.githubusercontent.com/DerJimno/arch-installation/main/base)
         ;;
     2)
-        echo "Setting up Arch for Personal Use..."
+        echo "Setting up Arch"
         sh <(curl -Lks raw.githubusercontent.com/DerJimno/packages/main/personal)
         sh <(curl -Lks raw.githubusercontent.com/DerJimno/dotfiles-import/main/personal)
         sh <(curl -Lks raw.githubusercontent.com/DerJimno/configuration/main/configure)
         ;;
     3)
-        echo "Setting up Arch for Work..."
-        sh <(curl -Lks raw.githubusercontent.com/DerJimno/packages/main/work)
-        sh <(curl -Lks raw.githubusercontent.com/DerJimno/dotfiles-import/main/work)
-        sh <(curl -Lks raw.githubusercontent.com/DerJimno/configuration/main/configure)
-        ;;
-    4)
-        echo "Setting up Arch as a Server..."
-        sh <(curl -Lks raw.githubusercontent.com/DerJimno/packages/main/server)
-        sh <(curl -Lks raw.githubusercontent.com/DerJimno/dotfiles-import/main/server)
-        sh <(curl -Lks raw.githubusercontent.com/DerJimno/configuration/main/configure-server)
-        ;;
-    5)
         echo "Exiting."
         exit 0
         ;;
