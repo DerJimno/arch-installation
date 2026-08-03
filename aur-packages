@@ -4,15 +4,16 @@ set -euo pipefail
 
 # AUR install
 cd /tmp
-git clone https://aur.archlinux.org/yay.git
-cd yay
+git clone https://aur.archlinux.org/aura-bin.git
+cd aura-bin
 makepkg -si --noconfirm
 cd ~
 # Clean up the build directory
-rm -rf /tmp/yay
+rm -rf /tmp/aura-bin
+
 
 # AUR packages
-yay -S --noconfirm brave-bin kanata-bin pfetch ttf-comic-mono-git \
+aura -A --noconfirm brave-bin kanata-bin pfetch ttf-comic-mono-git \
 pcloud-drive jmtpfs ttf-noto-emoji-monochrome einfach-icon-theme \
 einfach-grub-theme ttf-times-new-roman
 
