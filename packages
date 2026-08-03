@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
 # Arch-repo packages
 sudo pacman -Syu --noconfirm xorg ly base-devel xmonad xmonad-contrib xmobar \
