@@ -11,20 +11,3 @@ ttf-ubuntu-mono-nerd alsa-utils xsettingsd pipewire pipewire-alsa \
 pipewire-pulse pipewire-jack wireplumber bluez bluez-utils xf86-input-synaptics \
 ttf-liberation ttf-dejavu unzip discord xorg-xmessage libreoffice-fresh \
 luarocks shellcheck dunst playerctl mpv-mpris fzf
-
-# AUR install
-cd /tmp
-git clone https://aur.archlinux.org/yay.git
-cd yay
-makepkg -si --noconfirm
-cd ~
-# Clean up the build directory
-rm -rf /tmp/yay
-
-# AUR packages
-yay -S --noconfirm brave-bin kanata-bin pfetch ttf-comic-mono-git \
-pcloud-drive jmtpfs ttf-noto-emoji-monochrome einfach-icon-theme \
-einfach-grub-theme ttf-times-new-roman
-
-# Fnm install (Currently Commmented)
-# curl -fsSL https://fnm.vercel.app/install | bash -s -- --skip-shell
