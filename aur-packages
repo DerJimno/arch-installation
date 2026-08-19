@@ -15,8 +15,13 @@ fi
 
 # Install AUR packages
 echo "Installing AUR Packages..."
+git clone https://aur.archlinux.org/einfach-grub-theme.git
+cd einfach-grub-theme
+makepkg -si
+cd
 aura -A --noconfirm brave-origin-bin kanata-bin pcloud-drive \
-    ttf-noto-emoji-monochrome einfach-icon-theme einfach-grub-theme
+    ttf-noto-emoji-monochrome einfach-icon-theme
+
 
 
 # Fnm install (Currently Commmented)
