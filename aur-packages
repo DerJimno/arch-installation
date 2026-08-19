@@ -13,7 +13,7 @@ rm -rf /tmp/aura-bin
 
 
 # AUR packages
-aura -A --noconfirm brave-bin kanata-bin pcloud-drive \
+aura -A --noconfirm brave-origin-bin kanata-bin pcloud-drive \
 ttf-noto-emoji-monochrome einfach-icon-theme einfach-grub-theme
 
 
