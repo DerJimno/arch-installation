@@ -4,9 +4,10 @@ set -e
 
 echo "Select an option:"
 echo "1) Arch Base Install"
-echo "2) Setup Arch Packages"
-echo "3) Setup Arch Aur and Services"
-echo "4) Exit"
+echo "2) Setup Arch Packages & dotfiles"
+echo "3) Setup Aur Packages"
+echo "4) Setup Services"
+echo "5) Exit"
 
 read -rp "Enter your choice [1-4]: " choice
 
@@ -21,11 +22,14 @@ case "$choice" in
         sh <(curl -Lks raw.githubusercontent.com/DerJimno/arch-installation/main/import-dotfiles)
         ;;
     3)
-        echo "Setting up Aur & Services"
+        echo "Setting up Aur Packages"
         sh <(curl -Lks raw.githubusercontent.com/DerJimno/arch-installation/main/aur-packages)
-        sh <(curl -Lks raw.githubusercontent.com/DerJimno/arch-installation/main/services)
         ;;
     4)
+        echo "Setting up Services"
+        sh <(curl -Lks raw.githubusercontent.com/DerJimno/arch-installation/main/services)
+        ;;
+    5)
         echo "Exiting."
         exit 0
         ;;
