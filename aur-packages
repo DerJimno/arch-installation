@@ -13,9 +13,9 @@ rm -rf /tmp/aura-bin
 
 
 # AUR packages
-aura -A --noconfirm brave-bin kanata-bin ttf-comic-mono-git \
-pcloud-drive ttf-noto-emoji-monochrome einfach-icon-theme \
-einfach-grub-theme
+aura -A --noconfirm brave-bin kanata-bin pcloud-drive \
+ttf-noto-emoji-monochrome einfach-icon-theme einfach-grub-theme
+
 
 # Fnm install (Currently Commmented)
 # curl -fsSL https://fnm.vercel.app/install | bash -s -- --skip-shell
