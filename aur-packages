@@ -2,8 +2,8 @@
 set -euo pipefail
 
 # Install aura if not installed
-if ! command -v aura &> /dev/null; then
-    # AUR install
+if ! pacman -Qq aura-bin &> /dev/null; then
+    echo "Installing AUR..."
     cd /tmp
     git clone https://aur.archlinux.org/aura-bin.git
     cd aura-bin
@@ -14,6 +14,7 @@ if ! command -v aura &> /dev/null; then
 fi
 
 # Install AUR packages
+echo "Installing AUR Packages..."
 aura -A --noconfirm brave-origin-bin kanata-bin pcloud-drive \
     ttf-noto-emoji-monochrome einfach-icon-theme einfach-grub-theme
 
