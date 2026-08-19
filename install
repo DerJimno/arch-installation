@@ -9,7 +9,7 @@ echo "3) Setup Aur Packages"
 echo "4) Setup Services"
 echo "5) Exit"
 
-read -rp "Enter your choice [1-4]: " choice
+read -rp "Enter your choice [1-5]: " choice
 
 case "$choice" in
     1)
