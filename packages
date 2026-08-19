@@ -3,7 +3,7 @@ set -euo pipefail
 
 # Arch-repo packages
 sudo pacman -Syu --noconfirm base-devel xorg xmonad xmonad-contrib xmobar ly \
-pcmanfm pacman-contrib dmenu feh fish alacritty picom git os-prober neovim \
+pcmanfm pacman-contrib dmenu feh fish alacritty git os-prober neovim \
 yt-dlp gvfs gvfs-mtp htop lsd bat xcursor-themes vifm scrot xclip libnotify \
 notification-daemon udisks2 gparted terminus-font ttf-ubuntu-font-family \
 ttf-fira-code ttf-ubuntu-mono-nerd alsa-utils xsettingsd pipewire pipewire-alsa \
