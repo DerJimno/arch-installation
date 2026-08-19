@@ -9,4 +9,4 @@ notification-daemon udisks2 gparted terminus-font ttf-ubuntu-font-family \
 ttf-fira-code ttf-ubuntu-mono-nerd alsa-utils xsettingsd pipewire pipewire-alsa \
 pipewire-pulse pipewire-jack wireplumber bluez bluez-utils xf86-input-synaptics \
 ttf-liberation ttf-dejavu unzip xorg-xmessage libreoffice-fresh fzf mpv-mpris mpv \
-luarocks shellcheck playerctl dunst
+luarocks shellcheck playerctl dunst noto-fonts-emoji
