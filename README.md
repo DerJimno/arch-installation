@@ -7,7 +7,7 @@ A simple script to get my dotfiles on a new system install (inspired by [durdn](
 
 run with:
 ```
-sh <(curl -Lks https://raw.githubusercontent.com/DerJimno/arch-installation/main/import-packages) 
+sh <(curl -Lks https://raw.githubusercontent.com/DerJimno/arch-installation/main/import-dotfiles) 
 ```
 # Services
 A simple script to enable some services and configs on a new system install.
